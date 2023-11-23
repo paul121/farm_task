@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies: {  }
+id: task
+label: Task
+description: ''
+name_pattern: 'Task plan [plan:id]'
+workflow: plan_default
+new_revision: true

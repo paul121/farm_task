@@ -1,0 +1,12 @@
+farm_task.task_2_type.*:
+  type: config_entity
+  label: 'Task 2 type config'
+  mapping:
+    id:
+      type: string
+      label: 'ID'
+    label:
+      type: label
+      label: 'Label'
+    uuid:
+      type: string
