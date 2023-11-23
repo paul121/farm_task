@@ -1,0 +1,56 @@
+<?php
+
+/**
+ * @file
+ */
+
+use Drupal\Core\Entity\Display\EntityFormDisplayInterface;
+use Drupal\farm_task\Bundle\AssetTemplateTask;
+use Drupal\farm_task\Bundle\BooleanTask;
+use Drupal\farm_task\Bundle\DocumentTask;
+use Drupal\farm_task\Bundle\LogTask;
+use Drupal\farm_task\Bundle\LogTemplateTask;
+use Drupal\farm_task\Bundle\StringTask;
+
+/**
+ * Implements hook_entity_form_display_alter().
+ */
+function farm_task_entity_form_display_alter(EntityFormDisplayInterface $form_display, array $context) {
+
+  // Only modify task forms.
+  if ($context['entity_type'] != 'task') {
+    return;
+  }
+}
+
+/**
+ *
+ */
+function farm_task_entity_bundle_info_alter(array &$bundles): void {
+  if (isset($bundles['task']['boolean'])) {
+    $bundles['task']['boolean']['class'] = BooleanTask::class;
+  }
+  if (isset($bundles['task']['string'])) {
+    $bundles['task']['string']['class'] = StringTask::class;
+  }
+  if (isset($bundles['task']['log'])) {
+    $bundles['task']['log']['class'] = LogTask::class;
+  }
+  if (isset($bundles['task']['asset_template'])) {
+    $bundles['task']['asset_template']['class'] = AssetTemplateTask::class;
+  }
+  if (isset($bundles['task']['log_template'])) {
+    $bundles['task']['log_template']['class'] = LogTemplateTask::class;
+  }
+  if (isset($bundles['task']['document'])) {
+    $bundles['task']['document']['class'] = DocumentTask::class;
+  }
+}
+
+/**
+ * Implements hook_preprocess_field().
+ */
+function farm_task_preprocess_field(&$variables) {
+  $x = 1;
+
+}

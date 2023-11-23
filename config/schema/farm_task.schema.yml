@@ -1,0 +1,17 @@
+# Schema for the configuration files of the asset module.
+farm_task.task_type.*:
+  type: config_entity
+  label: 'Task type'
+  mapping:
+    id:
+      type: string
+      label: 'Machine-readable name'
+    label:
+      type: label
+      label: 'Type'
+    description:
+      type: text
+      label: 'Description'
+    new_revision:
+      type: boolean
+      label: 'Create new revision'
