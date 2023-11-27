@@ -1,5 +1,5 @@
 {
-  "name": "paul121/farm_contrib_template",
+  "name": "drupal/farm_task",
   "description": "Example farmOS contrib module.",
   "type": "drupal-module",
   "authors": [
