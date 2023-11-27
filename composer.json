@@ -1,14 +1,14 @@
 {
-  "name": "paul121/farm_contrib_template",
-  "description": "Example farmOS contrib module.",
-  "type": "drupal-module",
-  "authors": [
-      {
-          "name": "Author name",
-          "email": "info@farmos.org"
-      }
-  ],
-  "require": {
-    "farmos/farmos": "^3.0"
-  }
+    "name": "drupal/farm_task",
+    "description": "Adds task features to farmOS",
+    "type": "drupal-module",
+    "authors": [
+        {
+            "name": "Paul Weidner",
+            "email": "paul.weidner@gmail.com"
+        }
+    ],
+    "require": {
+        "farmos/farmos": "^3.0"
+    }
 }
