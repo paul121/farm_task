@@ -131,28 +131,30 @@ class TaskTableFormatter extends EntityReferenceRevisionsFormatterBase implement
     $view_mode = $this->getSetting('view_mode');
     $elements = array();
 
-    $task_list = $items->getEntity();
+    $table = [
+      '#type' => 'table',
+      '#header' => [
+        'Completed',
+        'Task',
+        'Value',
+      ],
+      '#empty' => 'No tasks.',
+    ];
 
+    $task_list = $items->getEntity();
     $count = $items->count() ?? 1;
     $completed_items = array_filter($items->referencedEntities(), function (TaskInterface $task) {
       return $task->completed();
     });
 
-    $table = [
-      '#type' => 'table',
-      '#caption' => [
+    if ($count > 0) {
+      $table['#caption'] = [
         '#theme' => 'progress_bar',
         '#label' => $task_list->label(),
         '#message' => "$count tasks",
         '#percent' => round((count($completed_items)/$count) * 100),
-      ],
-      '#header' => [
-        'Completed',
-        'Task',
-        'Value',
-        'Actions',
-      ],
-    ];
+      ];
+    }
 
     /**
      * @var int $delta
@@ -174,25 +176,6 @@ class TaskTableFormatter extends EntityReferenceRevisionsFormatterBase implement
 
       $table[$delta]['value'] = [
         $entity->get($entity->getTargetFieldName())->view(['label' => 'visually_hidden']),
-      ];
-
-      $table[$delta]['actions'] = [
-        '#type' => 'dropbutton',
-        '#dropbutton_type' => 'extrasmall',
-        '#links' => [
-          'complete' => [
-            'title' => $this->t('Complete'),
-            'url' => $entity->toUrl(),
-          ],
-          'edit' => [
-            'title' => $this->t('Edit'),
-            'url' => $entity->toUrl('edit-form'),
-          ],
-          'reset' => [
-            'title' => $this->t('Reset'),
-            'url' => $entity->toUrl('edit-form'),
-          ],
-        ],
       ];
     }
 

@@ -35,17 +35,6 @@ class Task extends FarmPlanType {
         'auto_create' => FALSE,
       ])
       ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayOptions('form', [
-        'type' => 'inline_entity_form_complex',
-        'settings' => [
-          'form_mode' => 'default',
-          'revision' => TRUE,
-          'allow_new' => TRUE,
-          'allow_existing' => FALSE,
-          'allow_duplicate' => TRUE,
-        ],
-        'weight' => '-5',
-      ])
       ->setDisplayConfigurable('view', TRUE)
       ->setDisplayOptions('view', [
         'label' => 'hidden',

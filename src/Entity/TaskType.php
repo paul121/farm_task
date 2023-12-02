@@ -18,6 +18,7 @@ use Drupal\Core\Config\Entity\ConfigEntityBundleBase;
  *      plural = "@count task types",
  *    ),
  *    handlers = {
+ *      "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
  *      "form" = {
  *        "add" = "Drupal\farm_task\Form\TaskTypeForm",
  *        "edit" = "Drupal\farm_task\Form\TaskTypeForm",
