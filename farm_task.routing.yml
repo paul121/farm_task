@@ -1,7 +1,42 @@
 farm_task.plan_task_list:
+  path: '/plan/{plan}/task-list'
+  defaults:
+    _controller: \Drupal\farm_task\Controller\TaskList::taskList
+    _title_callback: \Drupal\farm_task\Controller\TaskList::title
+  requirements:
+    _custom_access: \Drupal\farm_task\Controller\TaskList::access
+  options:
+    parameters:
+      plan:
+        type: entity:plan
+farm_task.plan_task_list_form:
+  path: '/plan/{plan}/task-list/edit'
+  defaults:
+    _form: \Drupal\farm_task\Form\TaskListForm
+    _title_callback: \Drupal\farm_task\Form\TaskListForm::title
+  requirements:
+    _custom_access: \Drupal\farm_task\Form\TaskListForm::access
+  options:
+    parameters:
+      plan:
+        type: entity:plan
+farm_task.plan_task_list_delta:
   path: '/plan/{plan}/task-list/{delta}'
   defaults:
     _controller: \Drupal\farm_task\Controller\TaskList::taskList
+    _title_callback: \Drupal\farm_task\Controller\TaskList::title
+  requirements:
+    _custom_access: \Drupal\farm_task\Controller\TaskList::access
+  options:
+    parameters:
+      plan:
+        type: entity:plan
+      delta:
+        type: integer
+farm_task.plan_task_list_delta_export:
+  path: '/plan/{plan}/task-list/{delta}/export'
+  defaults:
+    _controller: \Drupal\farm_task\Controller\TaskList::export
     _title_callback: \Drupal\farm_task\Controller\TaskList::title
   requirements:
     _custom_access: \Drupal\farm_task\Controller\TaskList::access

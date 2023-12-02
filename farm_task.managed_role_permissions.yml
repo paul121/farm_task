@@ -1,0 +1,4 @@
+farm_template:
+  default_permissions:
+    - view any task
+    - view any task_list

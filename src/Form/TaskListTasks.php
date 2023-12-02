@@ -121,6 +121,7 @@ class TaskListTasks extends FormBase {
         $task->save();
       }
     }
+    $form_state->setRedirect('farm_task.plan_task_list', ['plan' => $plan->id()]);
   }
 
 }

@@ -137,6 +137,9 @@ class TaskListFormatter extends EntityReferenceRevisionsFormatterBase implements
       '#caption' => [
         '#markup' => 'Task lists'
       ],
+      '#empty' => [
+        '#markup' => 'No task lists.',
+      ],
       '#header' => [
         'Name',
         'Progress',
@@ -152,7 +155,7 @@ class TaskListFormatter extends EntityReferenceRevisionsFormatterBase implements
      */
     foreach ($this->getEntitiesToView($items, $langcode) as $delta => $entity) {
 
-      $view_url = Url::fromRoute('farm_task.plan_task_list', ['plan' => $plan->id(), 'delta' => $delta]);
+      $view_url = Url::fromRoute('farm_task.plan_task_list_delta', ['plan' => $plan->id(), 'delta' => $delta]);
       $complete_url = Url::fromRoute('farm_task.plan_task_list_task_form', ['plan' => $plan->id(), 'delta' => $delta]);
 
       $elements[$delta] = [
@@ -166,15 +169,21 @@ class TaskListFormatter extends EntityReferenceRevisionsFormatterBase implements
         '#title' => $entity->label(),
         '#url' => $view_url,
       ];
-      $count = $entity->get('task')->count() ?? 1;
+      $count = $entity->get('task')->count();
       $completed_items = array_filter($entity->get('task')->referencedEntities(), function (TaskInterface $task) {
         return $task->completed();
       });
-      $table[$delta]['progress'] = [
-        '#theme' => 'progress_bar',
-        '#message' => "$count tasks",
-        '#percent' => round(count($completed_items)/$count * 100),
-      ];
+      $progress = $count > 0 ? (round(count($completed_items)/$count * 100)) : 0;
+      if ($count > 0) {
+        $table[$delta]['progress'] = [
+          '#theme' => 'progress_bar',
+          '#message' => "$count tasks",
+          '#percent' => $progress,
+        ];
+      }
+      else {
+        $table[$delta]['progress'] = ['#markup' => 'No tasks'];
+      }
 
       $table[$delta]['actions'] = [
         '#type' => 'dropbutton',
@@ -183,14 +192,6 @@ class TaskListFormatter extends EntityReferenceRevisionsFormatterBase implements
           'complete' => [
             'title' => $this->t('Complete'),
             'url' => $complete_url,
-          ],
-          'edit' => [
-            'title' => $this->t('Edit'),
-            'url' => $view_url,
-          ],
-          'reset' => [
-            'title' => $this->t('Reset'),
-            'url' => $view_url,
           ],
         ],
       ];
