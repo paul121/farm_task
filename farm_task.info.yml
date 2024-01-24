@@ -3,3 +3,5 @@ type: module
 description: Provides features to create tasks and checklists.
 package: farmOS Experimental
 core_version_requirement: ^9 || ^10
+dependencies:
+  - entity:entity
