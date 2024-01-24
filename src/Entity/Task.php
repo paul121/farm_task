@@ -54,6 +54,7 @@ use Drupal\user\EntityOwnerTrait;
  *      "langcode" = "langcode",
  *    },
  *    bundle_entity_type = "task_type",
+ *    bundle_plugin_type = "task_type",
  *    common_reference_target = TRUE,
  *    permission_granularity = "bundle",
  *    links = {
