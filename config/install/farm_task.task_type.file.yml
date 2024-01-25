@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - farm_task
+id: file
+label: File
+description: 'Document task type'
+new_revision: true

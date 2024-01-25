@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - farm_task
+id: log
+label: Log
+description: 'Log task type'
+new_revision: true

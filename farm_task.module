@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ */
+
+use Drupal\farm_task\Bundle\AssetTask;
+use Drupal\farm_task\Bundle\FileTask;
+use Drupal\farm_task\Bundle\LogTask;
+
+/**
+ * Implements hook_entity_bundle_info_alter().
+ */
+function farm_task_entity_bundle_info_alter(array &$bundles): void {
+  if (isset($bundles['task']['asset'])) {
+    $bundles['task']['asset']['class'] = AssetTask::class;
+  }
+  if (isset($bundles['task']['log'])) {
+    $bundles['task']['log']['class'] = LogTask::class;
+  }
+  if (isset($bundles['task']['file'])) {
+    $bundles['task']['file']['class'] = FileTask::class;
+  }
+}
