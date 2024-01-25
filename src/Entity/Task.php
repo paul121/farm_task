@@ -57,7 +57,6 @@ use Drupal\user\EntityOwnerTrait;
  *    bundle_entity_type = "task_type",
  *    bundle_plugin_type = "task_type",
  *    common_reference_target = TRUE,
- *    permission_granularity = "bundle",
  *    links = {
  *      "canonical" = "/task/{task}",
  *      "add-page" = "/task/add",

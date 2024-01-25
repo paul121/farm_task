@@ -1,0 +1,11 @@
+farm_template:
+  default_permissions:
+    - view any task
+    - view any task_list
+  config_permissions:
+    - create task
+    - update any task
+    - delete any task
+    - create task_list
+    - update any task_list
+    - delete any task_list
