@@ -100,4 +100,67 @@ class TaskList extends ControllerBase {
     return $build;
   }
 
+  /**
+   * Exports the task list and tasks associated with a given plan.
+   *
+   * @param \Drupal\plan\Entity\PlanInterface|null $plan
+   *   (optional) The plan entity. Defaults to NULL.
+   * @param int|null $delta
+   *   (optional) The delta value. Defaults to NULL.
+   *
+   * @return \Symfony\Component\HttpFoundation\Response
+   *   The serialized export data in JSON format.
+   */
+  public function export(PlanInterface $plan = NULL, int $delta = NULL) {
+
+    /** @var \Symfony\Component\Serializer\Serializer $serializer */
+    $serializer = \Drupal::service('serializer');
+
+//    $input = [
+//      'name' => ['Imported list'],
+//      'task' => [
+//        [
+//          'type' => 'boolean',
+//          'name' => ['Test input'],
+//          'description' => ['Test description'],
+//          'boolean_value' => [TRUE],
+//          'completed' => [FALSE],
+//        ],
+//        [
+//          'type' => 'log',
+//          'name' => ['Test log'],
+//          'description' => ['Test log description'],
+//          'log_value' => [],
+//        ]
+//      ]
+//    ];
+//    $tasks = array_map(function ($input_task) use ($serializer) {
+//      return $serializer->deserialize(Json::encode($input_task), Task::class, 'json');
+//    }, $input['task']);
+//    $out = $serializer->deserialize(Json::encode($input),\Drupal\farm_task\Entity\TaskList::class, 'json');
+//    $default = $out->get('task')->referencedEntities();
+//    $out->set('task', $tasks);
+//
+//    $other_plan = Plan::load(1);
+//    $other_plan->get('task_list')->removeItem(1);
+//    $other_plan->get('task_list')->appendItem($out);
+//    $other_plan->save();
+
+    // Build data to export.
+    $export = [];
+
+    // First export the task list entity.
+    $format = 'json';
+    $task_list = $plan->get('task_list')->get($delta)->entity;
+    $export['task_list'] = $serializer->normalize($task_list, $format, ['plugin_id' => 'entity']);
+
+    // Then export the tasks.
+    $tasks = $task_list->get('task')->referencedEntities();
+    $export['tasks'] = $serializer->normalize($tasks, $format, ['plugin_id' => 'entity']);
+
+    $response = new Response(Json::encode($export));
+    $response->headers->set('Content-Type', "text/$format");
+    return $response;
+  }
+
 }
