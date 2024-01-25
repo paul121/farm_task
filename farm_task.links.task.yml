@@ -1,0 +1,15 @@
+farm_task.plan_task_lists:
+  title: 'Task lists'
+  route_name: farm_task.plan_task_list
+  base_route: entity.plan.canonical
+  weight: 15
+farm_task.plan_task_lists_view:
+  title: 'View'
+  route_name: farm_task.plan_task_list
+  parent_id: farm_task.plan_task_lists
+  weight: -5
+farm_task.plan_task_list_form:
+  title: 'Edit'
+  route_name: farm_task.plan_task_list_form
+  parent_id: farm_task.plan_task_lists
+  weight: 15
