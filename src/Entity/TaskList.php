@@ -141,7 +141,25 @@ class TaskList extends RevisionableContentEntityBase implements TaskListInterfac
         'auto_create' => FALSE,
       ])
       ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE);
+      ->setDisplayOptions('form', [
+        'type' => 'inline_entity_form_complex',
+        'settings' => [
+          'form_mode' => 'default',
+          'revision' => TRUE,
+          'allow_new' => TRUE,
+          'allow_existing' => FALSE,
+          'allow_duplicate' => TRUE,
+        ],
+      ])
+      ->setDisplayConfigurable('view', TRUE)
+      ->setDisplayOptions('view', [
+        'label' => 'hidden',
+        'type' => 'entity_reference_revisions_task_table',
+        'settings' => [
+          'view_mode' => 'default',
+          'link' => FALSE,
+        ],
+      ]);
 
     return $fields;
   }
