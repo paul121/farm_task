@@ -5,4 +5,3 @@ package: farmOS Experimental
 core_version_requirement: ^9 || ^10
 dependencies:
   - farm_task
-  - farm:plan

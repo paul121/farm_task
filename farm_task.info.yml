@@ -6,3 +6,4 @@ core_version_requirement: ^9 || ^10
 dependencies:
   - entity:entity
   - entity_reference_revisions:entity_reference_revisions
+  - farm:plan
