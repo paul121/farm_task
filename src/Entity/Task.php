@@ -6,6 +6,7 @@ use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\RevisionLogEntityTrait;
 use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\entity\Revision\RevisionableContentEntityBase;
 use Drupal\user\EntityOwnerTrait;
 
@@ -152,5 +153,34 @@ class Task extends RevisionableContentEntityBase implements TaskInterface {
 
     return $fields;
   }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function completed(): bool {
+    return $this->get('completed')->value ?? FALSE;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getTargetFieldName(): string {
+    return "{$this->bundle()}_value";
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getComponentConfiguration(): array {
+    return [];
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function buildTaskForm(array &$form, FormStateInterface $form_state) {
+    return;
+  }
+
 
 }
