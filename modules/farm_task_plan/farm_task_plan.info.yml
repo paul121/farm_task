@@ -1,0 +1,8 @@
+name: farmOS Task Plan
+type: module
+description: Provides a task plan for use with tasklists.
+package: farmOS Experimental
+core_version_requirement: ^9 || ^10
+dependencies:
+  - farm_task
+  - farm:plan
