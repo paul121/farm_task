@@ -33,3 +33,16 @@ farm_task.plan_task_list_form:
     parameters:
       plan:
         type: entity:plan
+farm_task.plan_task_list_task_form:
+  path: '/plan/{plan}/task-list/{delta}/complete'
+  defaults:
+    _form: \Drupal\farm_task\Form\TaskListTasks
+    _title_callback: \Drupal\farm_task\Form\TaskListTasks::title
+  requirements:
+    _custom_access: \Drupal\farm_task\Form\TaskListTasks::access
+  options:
+    parameters:
+      plan:
+        type: entity:plan
+      delta:
+        type: integer
