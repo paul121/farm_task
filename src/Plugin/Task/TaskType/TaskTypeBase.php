@@ -39,4 +39,11 @@ abstract class TaskTypeBase extends PluginBase implements TaskTypeInterface, Con
     );
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public function getLabel() {
+    return $this->pluginDefinition['label'];
+  }
+
 }
